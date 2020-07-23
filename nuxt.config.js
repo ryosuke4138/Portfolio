@@ -1,16 +1,17 @@
 module.exports = {
   modules: ["nuxtdown"],
   env: {
-    BASE_URL: process.env.BASE_URL || 'http://localhost:3000'
+    BASE_URL: process.env.BASE_URL || "http://localhost:3000"
   },
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     htmlAttrs: {
-      lang: 'en',
+      lang: "en"
     },
-    title: "My Website",
+    title: "Okamae Blog",
+    titleTemplate: "%s | Nuxt.js tag items viewer",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -23,16 +24,16 @@ module.exports = {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   /*
-  ** Customize the progress bar color
-  */
+   ** Customize the progress bar color
+   */
   loading: { color: "#FFBB43" },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     /*
-    ** Run ESLint on save
-    */
+     ** Run ESLint on save
+     */
     extend(config, { isDev }) {
       if (isDev && process.client) {
         config.module.rules.push({

@@ -3,6 +3,15 @@
     <nav>
       <ul>
         <li>
+          <nuxt-link :to="'/'">Home</nuxt-link>
+        </li>
+        <li>
+          <nuxt-link :to="'/page-1'">株</nuxt-link>
+        </li>
+        <li>
+          <nuxt-link :to="'/page-1'">プログラミング</nuxt-link>
+        </li>
+        <li>
           <nuxt-link :to="'/page-1'">Page 1</nuxt-link>
         </li>
         <li>
@@ -10,7 +19,7 @@
         </li>
       </ul>
     </nav>
-    <nuxt/>
+    <nuxt />
   </div>
 </template>
 
