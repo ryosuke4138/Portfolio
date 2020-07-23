@@ -16,16 +16,16 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
-    "nuxt": "~2.2.0",
+    "nuxt": "~2.13.3",
     "nuxtdown": "^2.0.3"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
-    "cross-env": "^5.2.0",
-    "eslint": "^4.15.0",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0",
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.5.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-vue": "^6.2.2",
     "glob": "^7.1.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11"
