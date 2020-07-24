@@ -1,32 +1,47 @@
 <template>
-  <component :is="getLayout" :allitems="allBlogPosts"></component>
+  <BaelGrid :allitems="findCatPosts"></BaelGrid>
 </template>
 
 <script>
 import BaelGrid from "~/components/BaelGrid";
-import FullGrid from "~/components/FullGrid";
 export default {
-  watchQuery: ["page"],
+  async asyncData({ params, app, payload, route, store }) {
+    let post = await import(
+      "~/content/categories/posts/" + params.slug + ".json"
+    );
+    console.log(post);
+    await store.commit("SET_TITLE", post.title);
+    await store.commit("SET_CRUMB", "Categories");
+    return post;
+  },
+  head() {
+    return {
+      title: this.title + " | " + this.$store.state.siteInfo.sitename
+    };
+  },
+  components: { BaelGrid },
   transition(to, from) {
-    if (!from) return "fade";
+    if (!from) return "slide-right";
     return +to.query.page > +from.query.page ? "slide-right" : "slide-left";
   },
-  name: "Index",
-  components: { BaelGrid, FullGrid },
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    theSlug() {
+      return this.$route.params.slug;
+    }
+  },
   computed: {
     allBlogPosts() {
       return this.$store.state.blogPosts;
     },
-    getLayout() {
-      if (this.$store.state.siteInfo.altlayout == false) {
-        return "BaelGrid";
-      } else if (this.$store.state.siteInfo.altlayout == true) {
-        return "FullGrid";
-      }
+    findCatPosts() {
+      var posts = this.allBlogPosts;
+      var title = this.title;
+      return posts.filter(function(obj) {
+        return obj.category == title;
+      });
     }
   }
 };
