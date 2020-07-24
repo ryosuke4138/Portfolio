@@ -4,14 +4,14 @@ function addSendgridRecipient(client, email) {
   return new Promise((fulfill, reject) => {
     const data = [
       {
-        email: email,
-      },
+        email: email      }
     ];
     const request = {
       method: "POST",
       url: "/v3/contactdb/recipients",
-      body: data,
+      body: data
     };
+
     client
       .request(request)
       .then(([response, body]) => {
@@ -20,7 +20,7 @@ function addSendgridRecipient(client, email) {
         fulfill(response);
         // cb(null, response);
       })
-      .catch((error) => reject(error));
+      .catch(error => reject(error));
   });
 }
 
@@ -29,27 +29,29 @@ function sendWelcomeEmail(client, email, senderEmail, senderName, templateID) {
     const data = {
       from: {
         email: senderEmail,
-        name: senderName,
+        name: senderName
       },
       reply_to: {
-        email: senderEmail,
+        email: senderEmail
       },
       personalizations: [
         {
           to: [
             {
-              email: email,
-            },
-          ],
-        },
+              email: email
+            }
+          ]
+        }
       ],
-      template_id: templateID,
+      template_id: templateID
     };
+
     const request = {
       method: "POST",
       url: "/v3/mail/send",
-      body: data,
+      body: data
     };
+
     client
       .request(request)
       .then(([response, body]) => {
@@ -57,16 +59,16 @@ function sendWelcomeEmail(client, email, senderEmail, senderName, templateID) {
         console.log(body);
         fulfill(response);
       })
-      .catch((error) => reject(error));
+      .catch(error => reject(error));
   });
 }
 
-exports.handler = function (event, context, callback) {
+exports.handler = function(event, context, callback) {
   const {
     SENDGRID_API_KEY,
     SENDGRID_WELCOME_SENDER_EMAIL,
     SENDGRID_WELCOME_SENDER_NAME,
-    SENDGRID_WELCOME_TEMPLATE_ID,
+    SENDGRID_WELCOME_TEMPLATE_ID
   } = process.env;
   const body = JSON.parse(event.body);
   const email = body.email;
@@ -83,16 +85,11 @@ exports.handler = function (event, context, callback) {
           SENDGRID_WELCOME_SENDER_NAME,
           SENDGRID_WELCOME_TEMPLATE_ID
         )
-          .then((response) =>
-            callback(null, {
-              statusCode: response.statusCode,
-              body: email + " added",
-            })
-          )
-          .catch((err) => callback(err, null));
+				.then(response => callback(null, { statusCode: response.statusCode, body: email + " added" }) )
+				.catch(err => callback(err, null));
       } else {
         callback(null, { statusCode: response.statusCode, body: "" });
       }
     })
-    .catch((err) => callback(err, null));
+    .catch(err => callback(err, null));
 };

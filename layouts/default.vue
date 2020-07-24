@@ -1,8 +1,9 @@
 <template>
   <section class="container xs-border xs-text-5 md-text-4">
+
     <BaelHeader :blogtitle="blogtitle" :thecrumb="this.$store.state.theCrumb" :posts="blogposts" />
-    <nuxt />
-    <SlideOut />
+    <nuxt/>
+    <SlideOut/>
     <BaelFooter :pagination="paginate" />
   </section>
 </template>
@@ -17,10 +18,12 @@ export default {
       email: { email: "" }
     };
   },
+
   methods: {
     navHeight() {
       if (process.browser) {
         var height = document.getElementById("navbar").clientHeight;
+
         this.$store.commit("SET_NAVHEIGHT", height - 1);
       }
     }
@@ -45,7 +48,7 @@ export default {
   },
   computed: {
     paginate() {
-      return this.$store.state.pagination;
+return this.$store.state.pagination
     },
     blogposts() {
       return this.$store.state.blogPosts;
@@ -62,6 +65,7 @@ export default {
 };
 </script>
 
+
 <style>
 html,
 body {
@@ -76,43 +80,39 @@ body {
   font-weight: 400;
   line-height: 1;
 }
-.feat-wrapper {
-  max-height: 55vh;
-  width: 100%;
-}
+.feat-wrapper {max-height:55vh;width:100%;}
 .slide-left-enter,
 .slide-right-leave-active {
   transform: translate(50%, 0);
-  opacity: 0;
-  transition: all 0.25s;
+  opacity:0;
+  transition: all .25s;
 }
 .slide-left-leave-active,
 .slide-right-enter {
   transform: translate(-50%, 0);
-  opacity: 0;
-  transition: all 0.25s;
+   opacity:0;
+    transition: all .25s;
+
 }
 .slide-down-enter,
 .slide-up-leave-active {
-  transform: translate(0, 50%);
-  opacity: 1;
-  transition: all 0.25s;
+  transform: translate(0,50%);
+  opacity:1;
+  transition: all .25s;
 }
 .slide-down-leave-active,
 .slide-up-enter {
-  transform: translate(0, -50%);
-  opacity: 1;
-  transition: all 0.25s;
+  transform: translate(0,-50%);
+   opacity:1;
+    transition: all .25s;
+
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-  transition-delay: 0.3s;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+  transition-delay: .3s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-.post-content {
-  max-width: 75ch;
-}
+.post-content {max-width:75ch;}
 </style>
